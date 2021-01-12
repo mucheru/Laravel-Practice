@@ -44,7 +44,10 @@
         <td>{{$data->m_name}}</td>
         <td>{{$data->l_name}}</td>
         <td>{{$data->updated_date}}</td>
-        <td>Edit</td>
+        <td> <a href="/edituser/{{$data->id}}/edit" class="btn btn-success">Edit</a></td>
+        <td> <a href="/edituser/{{$data->id}}/delete" class="btn btn-danger">Delete</a></td>
+
+
     </tr> 
     @endforeach
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //use Illuminate\Http\Register_model;
 use App\Models\Register_model;
+use DB;
+
 
 
 class Register extends Controller
@@ -51,5 +53,46 @@ class Register extends Controller
         ->get();
        
         return view('viewusers',['data'=>$data]);
+    }
+
+    public function edit($id)
+    {        
+        //return View('edituser',compact('data'));
+
+    $data = Register_model::findOrFail($id);
+    Return view ('edituser', compact ('data','id'));
+        
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        //return ('success');
+        $data=request()->validate([
+            'f_name'=>'required',
+            'm_name'=>'',
+            'l_name'=>'required'
+        ]);
+
+        //$register->_vivregistrationemployee->update($data);
+        DB::table('_vivregistrationemployee')
+        ->where('id', $id)
+        ->update([
+            'f_name'  => $request['f_name'],
+            'm_name'  => $request['m_name'],
+            'l_name'  => $request['l_name'],
+            ]);
+
+            return redirect('/list');
+
+    }
+
+    public function delete($id)
+    {
+        $data = Register_model::find($id);
+        $data->delete();
+        echo("user".$id."deleted");
+        return redirect('/list');
+
     }
 }

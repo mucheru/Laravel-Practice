@@ -36,6 +36,7 @@
       <th scope="col">Created Date</th>
     </tr>
   </thead>
+  
   <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <tr>
         <td><?php echo e($data->id); ?></td>
@@ -43,7 +44,10 @@
         <td><?php echo e($data->m_name); ?></td>
         <td><?php echo e($data->l_name); ?></td>
         <td><?php echo e($data->updated_date); ?></td>
-        <td>Edit</td>
+        <td> <a href="/edituser/<?php echo e($data->id); ?>/edit" class="btn btn-success">Edit</a></td>
+        <td> <a href="/edituser/<?php echo e($data->id); ?>/delete" class="btn btn-danger">Delete</a></td>
+
+
     </tr> 
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
